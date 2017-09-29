@@ -81,5 +81,5 @@ fos_user:
 easy_admin:
     entities:
         - AppBundle\Entity\Post
-        - AppBundle\Entity\User
-#        - AppBundle\Entity\Photo
+#        - AppBundle\Entity\User
+        - AppBundle\Entity\Photo

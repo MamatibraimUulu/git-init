@@ -129,5 +129,27 @@ class Photo
     {
         return $this->source;
     }
+
+    /**
+     * @return Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return Photo
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+
+        return $this;
+    }
+
+
 }
 
