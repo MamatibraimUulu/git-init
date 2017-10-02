@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Post
@@ -39,7 +40,6 @@ class Post
      * @var Photo
      *
      * @ORM\OneToOne(targetEntity="Photo", mappedBy="post")
-     * @ORM\Column(name="photo", type="object", nullable=true)
      */
     protected $photo;
 
@@ -57,6 +57,12 @@ class Post
      */
     protected $dateModified;
 
+
+    public function __construct()
+    {
+        $this->datePublished = new \DateTime();
+        $this->dateModified = new \DateTime();
+    }
 
     /**
      * Get id

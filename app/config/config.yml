@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: easyadmin.yml }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -78,8 +79,11 @@ fos_user:
         sender_name: "%mailer_user%"
 
 # app/config/config.yml
-easy_admin:
-    entities:
-        - AppBundle\Entity\Post
-#        - AppBundle\Entity\User
-        - AppBundle\Entity\Photo
+iphp_file_store:
+    mappings:
+       photo:
+           upload_dir:  %kernel.root_dir%/../web/photo
+           upload_path: /photo
+           namer:
+              propertyPrefix:    #or propertyPostfix
+                 params: { field : id, delimiter: "_" }

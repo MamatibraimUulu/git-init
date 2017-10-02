@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             //installed bundles
             new FOS\UserBundle\FOSUserBundle(),
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+            new Iphp\FileStoreBundle\IphpFileStoreBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

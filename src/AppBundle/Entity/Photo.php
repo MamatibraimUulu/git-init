@@ -2,11 +2,13 @@
 
 namespace AppBundle\Entity;
 
+use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Photo
- *
+ * @FileStore\Uploadable
  * @ORM\Table(name="photo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
  */
@@ -19,28 +21,34 @@ class Photo
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
      */
-    private $title;
+    protected  $title;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="datePublished", type="datetime")
      */
-    private $datePublished;
+    protected  $datePublished;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="source", type="string", length=255)
+     * @var array
+     * @ORM\Column(type="array", nullable=true)
      */
-    private $source;
+    protected  $photoInfo;
+
+    /**
+     * @var File
+     *
+     * @FileStore\UploadableField(mapping="photo", fileDataProperty ="photoInfo")
+     */
+    protected  $photoUpload;
 
     /**
      * @var Post
@@ -48,6 +56,19 @@ class Photo
      * @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      */
     protected $post;
+
+    public function __construct()
+    {
+        $this->datePublished = new \DateTime();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString() {
+        return $this->title;
+    }
+
     /**
      * Get id
      *
@@ -107,30 +128,6 @@ class Photo
     }
 
     /**
-     * Set source
-     *
-     * @param string $source
-     *
-     * @return Photo
-     */
-    public function setSource($source)
-    {
-        $this->source = $source;
-
-        return $this;
-    }
-
-    /**
-     * Get source
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return $this->source;
-    }
-
-    /**
      * @return Post
      */
     public function getPost()
@@ -146,6 +143,44 @@ class Photo
     public function setPost($post)
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPhotoInfo()
+    {
+        return $this->photoInfo;
+    }
+
+    /**
+     * @param array $photoInfo
+     * @return Photo
+     */
+    public function setPhotoInfo($photoInfo)
+    {
+        $this->photoInfo = $photoInfo;
+
+        return $this;
+    }
+
+    /**
+     * @return File
+     */
+    public function getPhotoUpload()
+    {
+        return $this->photoUpload;
+    }
+
+    /**
+     * @param File $photoUpload
+     * @return Photo
+     */
+    public function setPhotoUpload($photoUpload)
+    {
+        $this->photoUpload = $photoUpload;
 
         return $this;
     }

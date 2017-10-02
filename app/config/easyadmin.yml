@@ -1,0 +1,18 @@
+
+easy_admin:
+  entities:
+    Photo:
+      class: AppBundle\Entity\Photo
+      form:
+        fields:
+              - 'title'
+              - { property: 'photo_upload', type: 'file', label: 'Photo' }
+    Post:
+      # TODO: wrong saving photos into post.
+      # TODO: Implement date modified field
+      class: AppBundle\Entity\Post
+      form:
+        fields:
+              - 'title'
+              - 'content'
+              - 'photo'
