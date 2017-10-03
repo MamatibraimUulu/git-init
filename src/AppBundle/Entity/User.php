@@ -25,21 +25,21 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     protected $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
     protected $lastName;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
      */
     protected $birthDate;
 

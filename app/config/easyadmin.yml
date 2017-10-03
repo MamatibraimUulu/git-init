@@ -5,14 +5,15 @@ easy_admin:
       class: AppBundle\Entity\Photo
       form:
         fields:
-              - 'title'
-              - { property: 'photo_upload', type: 'file', label: 'Photo' }
+          - 'title'
+          - { property: 'photoFile', type: 'vich_image', base_path: %app.path.photos% }
+
     Post:
       # TODO: wrong saving photos into post.
       # TODO: Implement date modified field
       class: AppBundle\Entity\Post
       form:
         fields:
-              - 'title'
-              - 'content'
-              - 'photo'
+          - 'title'
+          - 'content'
+          - 'photo'

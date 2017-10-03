@@ -2,13 +2,14 @@
 
 namespace AppBundle\Entity;
 
-use Iphp\FileStoreBundle\Mapping\Annotation as FileStore;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Photo
- * @FileStore\Uploadable
+ * @Vich\Uploadable
  * @ORM\Table(name="photo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PhotoRepository")
  */
@@ -33,22 +34,22 @@ class Photo
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datePublished", type="datetime")
+     * @ORM\Column(name="date_published", type="datetime")
      */
     protected  $datePublished;
 
     /**
-     * @var array
-     * @ORM\Column(type="array", nullable=true)
+     * @var string
+     * @ORM\Column(name="photo", type="string", length=255)
      */
-    protected  $photoInfo;
+    protected $photo;
 
     /**
      * @var File
      *
-     * @FileStore\UploadableField(mapping="photo", fileDataProperty ="photoInfo")
+     * @Vich\UploadableField(mapping="photos", fileNameProperty="photo")
      */
-    protected  $photoUpload;
+    protected $photoFile;
 
     /**
      * @var Post
@@ -148,20 +149,21 @@ class Photo
     }
 
     /**
-     * @return array
+     * @return mixed
      */
-    public function getPhotoInfo()
+    public function getPhoto()
     {
-        return $this->photoInfo;
+        return $this->photo;
     }
 
     /**
-     * @param array $photoInfo
+     * @param mixed $photo
+     *
      * @return Photo
      */
-    public function setPhotoInfo($photoInfo)
+    public function setPhoto($photo)
     {
-        $this->photoInfo = $photoInfo;
+        $this->photo = $photo;
 
         return $this;
     }
@@ -169,22 +171,25 @@ class Photo
     /**
      * @return File
      */
-    public function getPhotoUpload()
+    public function getPhotoFile()
     {
-        return $this->photoUpload;
+        return $this->photoFile;
     }
 
     /**
-     * @param File $photoUpload
+     * @param File $photoFile
+     *
      * @return Photo
      */
-    public function setPhotoUpload($photoUpload)
+    public function setPhotoFile($photoFile = null)
     {
-        $this->photoUpload = $photoUpload;
+        $this->photoFile = $photoFile;
+
+        if ($photoFile) {
+            $this->datePublished = new \DateTime('now');
+        }
 
         return $this;
     }
-
-
 }
 

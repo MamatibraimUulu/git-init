@@ -46,14 +46,14 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="datePublished", type="datetime")
+     * @ORM\Column(name="date_published", type="datetime")
      */
     protected $datePublished;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateModified", type="datetime")
+     * @ORM\Column(name="date_modified", type="datetime")
      */
     protected $dateModified;
 
@@ -139,7 +139,7 @@ class Post
     /**
      * Get photo
      *
-     * @return \stdClass
+     * @return Photo
      */
     public function getPhoto()
     {
