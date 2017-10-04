@@ -1,0 +1,9 @@
+.main-block {
+    min-height: 600px;
+    margin-top: 100px;
+}
+
+.blog-item img {
+    max-width: 100%;
+    max-height: 175px;
+}
